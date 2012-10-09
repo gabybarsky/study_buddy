@@ -6,7 +6,8 @@
 # Modification history
 # Date       By             Reasons
 # ------     ------------   ----------
-# 191011	 Mitchell		First Commit
+# 191012	 Mitchell		First Commit
+# 091012	 Mitchell		Implemented Registration
 #
 # Current Version: 1.0.0
 # Function: Home page
