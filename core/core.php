@@ -29,10 +29,17 @@ function Login($uid, $pass)
 	$pass = clean($pass);
 	$pass = md5($pass);
 	$sql = mysql_query("SELECT * FROM accounts WHERE username = '$uid' ");
+	$result = mysql_query("UPDATE accounts  SET `lastonline`=CURDATE() WHERE `username`='$uid'");
+	if(!result)
+	{
+		   echo mysql_errno() . ": " . mysql_error() . "\n";
+   		 die();
+	}
 	while($user = mysql_fetch_array($sql))
 	{
 		if($pass == $user['password'])
 		{
+			
 			return true;
 		}
 		else
