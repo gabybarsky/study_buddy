@@ -23,13 +23,41 @@ else
 		{
 			$error = "Invalid login";
 		}
-		if($_GET['error']==2)
+		elseif($_GET['error']==2)
 		{
 			$error = "Passwords do not match";
 		}
-		if($_GET['error']==3)
+		elseif($_GET['error']==3)
 		{
 			$error = "Password not long enough";
+		}
+		elseif($_GET['error']==4)
+		{
+			$error = "Username unavailable";
+		}
+		elseif($_GET['error']==5)
+		{
+			$error = "Invalid birthday";
+		}
+		elseif($_GET['error']==6)
+		{
+			$error = "Invalid school";
+		}
+		elseif($_GET['error']==7)
+		{
+			$error = "Invalid grade";
+		}
+		elseif($_GET['error']==8)
+		{
+			$error = "Invalid answer to security question";
+		}
+		elseif($_GET['error']==9)
+		{
+			$error = "Invalid email adress";
+		}
+		elseif($_GET['error']==10)
+		{
+			$error = "Username taken";
 		}
 	}
 }
@@ -159,6 +187,28 @@ function ValidateField(field,value)
 <td><input type="password" name="confirmpassword" id="confirmpassword" value="Password" onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;" onBlur="ValidateField(this,'password')"/></td><td align="left" width="140"><h5 style="display: none;" id="check2">*Must match password above</h5></td>
 </tr>
 <tr>
+<td><input type="text" name="email" value="Email" onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;" onBlur="ValidateField(this,'Email')"/></td>
+</tr>
+<tr>
+<td>
+<select name="question" id="question">
+<option value="1">What city were you born in?</option>
+<option value="2">What was the name of your first pet?</option>
+<option value="3">What is your mothers maiden name?</option>
+<option value="4">What is your favorite school subject?</option>
+<option value="5">What is your childhood nickname?</option>
+</select>
+</td><td><h5 align="left">*Security Question</h5></td>
+</tr>
+<tr>
+<td>
+<input type="text" value="Answer" name="answer" id="answer" maxlength="250" onblur="ValidateField(this,'Answer')" 
+onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;">
+</td>
+</tr>
+
+
+<tr>
 <td><select name="day" id="day"><option value="day">Day</option>
 <option value="1">1</option>
 <option value="2">2</option>
@@ -192,7 +242,7 @@ function ValidateField(field,value)
 <option value="30">30</option>
 <option value="31">31</option>
 </select>
-<select name="month"><option value="month">Month</option>
+<select name="month" id="month"><option value="month">Month</option>
 <option value="january">January</option>
 <option value="february">February</option>
 <option value="march">March</option>
@@ -228,7 +278,7 @@ function ValidateField(field,value)
 </tr>
 
 <tr>
-<td><select style="width: 200px;" name="school">
+<td><select style="width: 210px;" name="school" id="school">
 <option value="school">School</option>
 <option value="westmount">Westmount</option>
 <option value="thornhill">Thornhill</option>
@@ -236,7 +286,7 @@ function ValidateField(field,value)
 </select></td>
 </tr>
 <tr>
-<td><select style="width: 200px;" name="grade">
+<td><select style="width: 210px;" name="grade">
 <option value="grade">Grade</option>
 <option value="9">9</option>
 <option value="10">10</option>

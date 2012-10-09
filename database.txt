@@ -1,0 +1,45 @@
+-- phpMyAdmin SQL Dump
+-- version 3.5.1
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Oct 09, 2012 at 11:43 PM
+-- Server version: 5.5.25
+-- PHP Version: 5.4.4
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Database: `StudyBuddy`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `accounts`
+--
+
+CREATE TABLE `accounts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(200) NOT NULL,
+  `password` varchar(250) NOT NULL,
+  `email` varchar(250) NOT NULL,
+  `firstname` varchar(100) NOT NULL,
+  `lastname` varchar(100) NOT NULL,
+  `school` varchar(250) NOT NULL,
+  `grade` int(11) NOT NULL,
+  `birthday` date NOT NULL,
+  `securityquestion` varchar(250) NOT NULL,
+  `securityanswer` varchar(200) NOT NULL,
+  `datejoined` date NOT NULL,
+  `lastonline` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `accounts`
+--
+
+INSERT INTO `accounts` (`id`, `username`, `password`, `email`, `firstname`, `lastname`, `school`, `grade`, `birthday`, `securityquestion`, `securityanswer`, `datejoined`, `lastonline`) VALUES
+(8, 'madskillsmonk', '084bf25cb5d7ea954e13e264437daf1c', 'mitchfriedman5@gmail.com', 'Mitchell', 'Friedman', 'westmount', 12, '1995-04-01', '3', 'Gilbert', '2012-10-09', '2012-10-09');

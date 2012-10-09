@@ -5,41 +5,78 @@ if($_POST['registerpassword'] != $_POST['confirmpassword'])
 {
 	header('Location: ../index.php?error=2');
 }
-if(len($_POST['registerpassword']) < 6 || len($_POST['confirmpassword']) < 6)
+if(strlen($_POST['registerpassword']) < 6 || strlen($_POST['confirmpassword']) < 6)
 {
 	header('Location: ../index.php?error=3');
 }
-
-if(strlen($_POST['username']) > 6)
+if($_POST['answer'] == 'answer')
 {
-	echo $_POST['username'];
-	echo $_POST['password'];
-	echo $_POST['firstname'];
-	echo $_POST['lastname'];
-	echo $_POST['day'];
-	echo $_POST['month'];
-	echo $_POST['year'];
-	echo $_POST['school'];
-	echo $_POST['grade'];
-	if($_POST['firstname'] && $_POST['lastname'])
-	{
-		if($_POST['day'] != 'day')
-		{
-			//echo "day";
-			if($_POST['month'] != 'month')
-			{
-				if($POST['year'] != 'year')
-				{
-					if($POST['school'] != 'School')
-					{
-						if($POST['grade'] != 'Grade')
-						{
-							
-						}
-					}
-				}
-			}
-		}	
-	}
+	header("Location: ../index.php?error=8");
 }
+
+if(UserExist($_POST['username']))
+{
+	header("Location: ../index.php?error=4");
+}
+	
+if($_POST['firstname'] && $_POST['lastname'])
+{
+	if($_POST['day'] == 'day' || $_POST['year'] == 'year' || $_POST['month'] == 'month' )
+    {
+    	header("Location: ../index.php?error=5");
+    }
+    if($_POST['school'] == 'school')
+    {
+    	header("Location: ../index.php?error=6");
+    }
+    if($_POST['grade'] == 'grade')
+    {
+    	header("Location: ../index.php?error=7");
+    }
+}
+if (preg_match("/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/", $_POST['email'])) 
+{
+	$email = $_POST['email'];
+}
+else
+{
+    header("Location: ../index.php?error=9");
+}
+
+if(UserExist($_POST['username']))
+{
+	header("Location: ../index.php?error=10");
+}
+
+
+$username = $_POST['username'];
+$password = $_POST['registerpassword'];
+$email = $_POST['email'];
+$first = $_POST['firstname'];
+$last = $_POST['lastname'];
+$school = $_POST['school'];
+$grade = $_POST['grade'];
+//formatting date
+$day = $_POST['day'];
+$month = $_POST['month'];
+$year = $_POST['year'];
+$date_value="$year-$month-$day";
+$birthday = Date('Y-m-d',strtotime($date_value));
+$securityQ = $_POST['question'];
+$securityA = $_POST['answer'];
+$datejoined = date("Y-m-d");
+$lastonline = date("Y-m-d");
+//Register($username, $password, $email, $first, $last, $school, $grade, $birthday, $securityQ, $securityA, $datejoined,$lastonline);
+
+if(Register($username,$password,$email,$first,$last,$school,$grade,$birthday,$securityQ,$securityA,$datejoined,$lastonline))
+{
+	header("Location: ../profile.php");
+}
+
+
 ?>
+
+
+
+
+

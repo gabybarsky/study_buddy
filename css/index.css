@@ -91,7 +91,7 @@ table
 	padding-top: 2%;
 	position: absolute;
 	left: 40%;
-	top: 89%;
+	top: 110%;
 }
 #footer a
 {
@@ -119,15 +119,16 @@ h3
 	font-size: 14px;
 	padding-top: 3%;
 }
-input {
-    width: 200px;
+input 
+{
+    width: 210px;
     padding: 6px;
     margin-bottom: 10px;
     border-top: 1px solid black;
     border-left: 1px solid black;
     border-right: 1px solid black;
     border-bottom: 1px solid black;
-    color: black;
+    color: #607783;
     font-size: 12px;
 }
 input.submit {
