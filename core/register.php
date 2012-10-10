@@ -9,11 +9,6 @@ if(strlen($_POST['registerpassword']) < 6 || strlen($_POST['confirmpassword']) <
 {
 	header('Location: ../index.php?error=3');
 }
-if($_POST['answer'] == 'answer')
-{
-	header("Location: ../index.php?error=8");
-}
-
 if(UserExist($_POST['username']))
 {
 	header("Location: ../index.php?error=4");
@@ -34,18 +29,13 @@ if($_POST['firstname'] && $_POST['lastname'])
     	header("Location: ../index.php?error=7");
     }
 }
-if (preg_match("/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/", $_POST['email'])) 
+if($_POST['answer'] == 'answer')
 {
-	$email = $_POST['email'];
+	header("Location: ../index.php?error=8");
 }
 else
 {
     header("Location: ../index.php?error=9");
-}
-
-if(UserExist($_POST['username']))
-{
-	header("Location: ../index.php?error=10");
 }
 
 
