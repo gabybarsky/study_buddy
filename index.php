@@ -33,46 +33,6 @@ else
 			case  9: return "Invalid email address";
 			case 10: return "Username unavailable";
 		endswitch;
-		/*if($_GET['error']==1)
-		{
-			$error = "Invalid login";
-		}
-		elseif($_GET['error']==2)
-		{
-			$error = "Passwords do not match";
-		}
-		elseif($_GET['error']==3)
-		{
-			$error = "Password not long enough";
-		}
-		elseif($_GET['error']==4)
-		{
-			$error = "Username unavailable";
-		}
-		elseif($_GET['error']==5)
-		{
-			$error = "Invalid birthday";
-		}
-		elseif($_GET['error']==6)
-		{
-			$error = "Invalid school";
-		}
-		elseif($_GET['error']==7)
-		{
-			$error = "Invalid grade";
-		}
-		elseif($_GET['error']==8)
-		{
-			$error = "Invalid answer to security question";
-		}
-		elseif($_GET['error']==9)
-		{
-			$error = "Invalid email adress";
-		}
-		elseif($_GET['error']==10)
-		{
-			$error = "Username taken";
-		}*/
 	}
 }
 ?>
