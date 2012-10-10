@@ -33,6 +33,16 @@ function UserExist($uid)
 	}
 	return false;
 }
+function EmailExist($email)
+{
+	$email = clean($email);
+	$sql = mysql_query("SELECT * FROM accounts WHERE email = '$email' ");
+	if(mysql_num_rows($sql) > 0)
+	{
+		return true;
+	}
+	return false;
+}
 
 function Login($uid, $pass)
 {
@@ -43,15 +53,21 @@ function Login($uid, $pass)
 	$result = mysql_query("UPDATE accounts  SET `lastonline`=CURDATE() WHERE `username`='$uid'");
 	if(!result)
 	{
-		   echo mysql_errno() . ": " . mysql_error() . "\n";
-   		 die();
+		   echo  mysql_error();
+   		 
 	}
 	while($user = mysql_fetch_array($sql))
 	{
 		if($pass == $user['password'])
 		{
-			
-			return true;
+			if($user['confirmed']=="yes")
+			{
+				return true;
+			}
+			else
+			{
+				header("Location: ../index.php?error=An email has been sent to you. Please check it and confirm your account to login.");
+			}
 		}
 		else
 		{
@@ -73,13 +89,56 @@ function Register($uid, $pass, $email, $first, $last, $school, $grade, $birthday
 	$securityQ = mysql_real_escape_string($securityQ);
 	$securityA = mysql_real_escape_string($securityA);
 	//echo $uid,"  ",$pass,"  ",$email,"  ",$first,"  ",$last,"  ",$school,"  ",$grade,"  ",$birthday,"  ",$securityQ,"  ",$securityA,"  ",$datejoined,"  ",$lastlonline;
-	if($sql = mysql_query("INSERT INTO accounts (username,password,email,firstname,lastname,school,grade,birthday,securityquestion,securityanswer,datejoined,lastonline) VALUES ('$uid','$pass','$email','$first','$last','$school','$grade','$birthday','$securityQ','$securityA','$datejoined','$lastonline')"))
+	echo $uid;
+	if(UserExist($uid))
 	{
-		return true;
+		header("Location: ../index.php?error=Username Unavailable");
 	}
 	else
+	{
+		if(EmailExist($email))
+		{
+			header("Location: ../index.php?error=Email already in use");
+		}
+		else
+		{
+			if($sql = mysql_query("INSERT INTO accounts (username,password,email,firstname,lastname,school,grade,birthday,securityquestion,securityanswer,datejoined,lastonline,confirmed) VALUES ('$uid','$pass','$email','$first','$last','$school','$grade','$birthday','$securityQ','$securityA','$datejoined','$lastonline','no')"	))
+			{
+				//register sucessful
+				//email user and ask for confirmation
+				$activationID = uniqid();
+				$sql2 = mysql_query("INSERT INTO `activation` (username,activation) VALUES('$uid','$activationID')");
+				
+				$subject = "Do not reply to this email";
+				$message = "Thank you for registering at StudyBuddy.com! To begin using our service, please click the link below. '\r\n' studybuddy.com/activate.php?activate='$activationID' ";
+				$message = wordwrap($message);
+				$headers = "From: mitchfriedman5@gmail.com";
+				
+				mail($email,$subject,$message,$headers);
+				return true;
+			}
+		}
+	}	
+}
+
+function GetUserFromActivate($id)
+{
+	//echo $id;
+	$sql = mysql_query("SELECT * FROM `activation` WHERE `activation` = '$id'");
+	$user = mysql_fetch_array($sql);
+	
+	$username = $user['1'];
+	$value = "yes";
+	$result = mysql_query("UPDATE `accounts` SET `confirmed` = '$value' WHERE `username` = '$username' ");
+	if(!$result)
+	{
+		   echo  mysql_error();
+	}
+	$result2 = mysql_query("DELETE FROM `activation` WHERE `username` = '$username'");
+	if(!$result2)
+	{
 		echo mysql_error();
-	//return "1";
+	}
 }
 
 function clean($str, $encode_ent = false) {

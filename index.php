@@ -21,18 +21,7 @@ else
 {
 	if(isset($_GET['error']))
 	{
-		switch($_GET['error']):
-			case  1: return "Invalid login";
-			case  2: return "Passwords do not match";
-			case  3: return "Password not long enough";
-			case  4: return "Username unavailable";
-			case  5: return "Invalid birthday";
-			case  6: return "Invalid school";
-			case  7: return "Invalid grade";
-			case  8: return "Invalid answer to security question";
-			case  9: return "Invalid email address";
-			case 10: return "Username unavailable";
-		endswitch;
+		$error = $_GET['error'];
 	}
 }
 ?>
@@ -109,14 +98,8 @@ function ValidateField(field,value)
 			document.getElementById("checkusername").style.display = "none";
 		}
 	}
-	
 }
-
 </script>
-
-
-
-
 <div id="cnt_top">
 	<form method="post" name="login" action="core/login.php">
 	<table style="	border-collapse:separate;
@@ -124,12 +107,12 @@ function ValidateField(field,value)
 	            <tbody>
 	            <tr>
 	            	<td width="40%" height="5px"><h1>Study Buddy</h1></td><td></td>
-                    <td width="20%;"><!--<img src="pen.jpg">--></td><!--<td width="10%">Username:</td>--><td align="left"><input class="input" id="username" name="username" type="text" value="Username" onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;" onBlur="ValidateField(this,'Username')" /></td>
-                	<!--<td width="10%">Password:</td>--><td align="left"><input class="input" id="password" name="password"  type="password" value="Password" onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;" onBlur="ValidateField(this,'Password')" /></td>
+                    <td width="20%;"></td><td align="left"><input class="input" id="username" name="username" type="text" value="Username" onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;" onBlur="ValidateField(this,'Username')" /></td>
+                	<td align="left"><input class="input" id="password" name="password"  type="password" value="Password" onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;" onBlur="ValidateField(this,'Password')" /></td>
                 	<td align="right" width="15%"><input type="submit" name="submit" class="submit" value="Sign In"/></td>
 				</tr>
     <tr>
-    <td></td><td></td><td></td><td><h4 align="middle"><?php if($_GET['error']==1) echo $error; ?></h4 ><td></td></td>
+    <td><h4 align="center"><?php if(isset($_GET['error'])&& $_GET['error'] == "An email has been sent to you. Please check it and confirm your account to login.") echo $error; ?></h4></td><td></td><td></td><td><h4 align="middle"><?php if(isset($_GET['error']) && $_GET['error']=="Invalid Login") echo $error; ?></h4 ><td></td></td>
     <td align="center"><a href="forgotpass.php">Forgot Password?</a><td>
     </td></td>
     </tr>
@@ -140,7 +123,7 @@ function ValidateField(field,value)
 <div id="registerleft">
 <form style="padding-left:0%;" name="register" method="post" action="core/register.php">
 <table class="register">
-<h4><?php if($_GET['error']>1) echo $error;?></h4>
+<h4><?php if(isset($_GET['error'])&& strlen($_GET['error']) != 81) echo $error;?></h4>
 <h2>Find Your Study Buddy!</h2>
 <tr>
 <td><input type="text" name="firstname" value="First Name" onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;" onBlur="ValidateField(this,'First Name')"/></td>
