@@ -8,6 +8,7 @@
 # ------     ------------   ----------
 # 191012	 Mitchell		First Commit
 # 091012	 Mitchell		Implemented Registration
+# 091012	 Gaby			Cleaned Error
 #
 # Current Version: 1.0.0
 # Function: Home page
@@ -20,7 +21,19 @@ else
 {
 	if(isset($_GET['error']))
 	{
-		if($_GET['error']==1)
+		switch($_GET['error']):
+			case  1: return "Invalid login";
+			case  2: return "Passwords do not match";
+			case  3: return "Password not long enough";
+			case  4: return "Username unavailable";
+			case  5: return "Invalid birthday";
+			case  6: return "Invalid school";
+			case  7: return "Invalid grade";
+			case  8: return "Invalid answer to security question";
+			case  9: return "Invalid email address";
+			case 10: return "Username unavailable";
+		endswitch;
+		/*if($_GET['error']==1)
 		{
 			$error = "Invalid login";
 		}
@@ -59,7 +72,7 @@ else
 		elseif($_GET['error']==10)
 		{
 			$error = "Username taken";
-		}
+		}*/
 	}
 }
 ?>
@@ -306,7 +319,7 @@ onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;">
 
 
 <div id="mainbody">
-<img src="Brain2.png" height="65%" alt="Sign Up"></img>
+<img src="brain2.png" height="65%" alt="Sign Up"></img>
 </div>
 <div id="footer">
 <table align="center" width="50%">
