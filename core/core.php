@@ -48,14 +48,11 @@ function Login($uid, $pass)
 {
 	$uid = clean($uid);
 	$pass = clean($pass);
-	$pass = md5($pass);
+	$pass = md5(sha1(sha1(sha1($pass))));
 	$sql = mysql_query("SELECT * FROM accounts WHERE username = '$uid' ");
-	$result = mysql_query("UPDATE accounts  SET `lastonline`=CURDATE() WHERE `username`='$uid'");
-	if(!result)
-	{
-		   echo  mysql_error();
-   		 
-	}
+	
+	$result = mysql_query("UPDATE `accounts` SET `lastonline`=CURDATE() WHERE `username`='$uid'");
+	
 	while($user = mysql_fetch_array($sql))
 	{
 		if($pass == $user['password'])
@@ -80,7 +77,7 @@ function Register($uid, $pass, $email, $first, $last, $school, $grade, $birthday
 {	
 	$uid = mysql_real_escape_string($uid);
 	$pass = mysql_real_escape_string($pass);
-	$pass = md5($pass);
+	$pass = md5(sha1(sha1(sha1($pass))));
 	$email = mysql_real_escape_string($email);
 	$first = mysql_real_escape_string($first);
 	$last = mysql_real_escape_string($last);

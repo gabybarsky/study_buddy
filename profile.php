@@ -1,6 +1,4 @@
 <?php
-include 'core.php';
-
 if(isset($_COOKIE['username']) && isset($_COOKIE['password']))
 {
 	echo "logged in",base64_decode($_COOKIE['username']);
