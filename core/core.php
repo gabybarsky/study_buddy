@@ -63,7 +63,7 @@ function Login($uid, $pass)
 			}
 			else
 			{
-				header("Location: ../index.php?error=An email has been sent to you. Please check it and confirm your account to login.");
+				header("Location: ../index.php?error=An email has been sent to you. Please check it and confirm your account to login");
 			}
 		}
 		else

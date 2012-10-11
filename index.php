@@ -112,7 +112,7 @@ function ValidateField(field,value)
                 	<td align="right" width="15%"><input type="submit" name="submit" class="submit" value="Sign In"/></td>
 				</tr>
     <tr>
-    <td><h4 align="center"><?php if(isset($_GET['error'])&& $_GET['error'] == "An email has been sent to you. Please check it and confirm your account to login.") echo $error; ?></h4></td><td></td><td></td><td><h4 align="middle"><?php if(isset($_GET['error']) && $_GET['error']=="Invalid Login") echo $error; ?></h4 ><td></td></td>
+    <td><h4 align="center"><?php if(isset($_GET['error']) && $_GET['error'] == "An email has been sent to you. Please check it and confirm your account to login") echo $error; ?></h4></td><td></td><td></td><td><h4 align="middle"><?php if(isset($_GET['error']) && $_GET['error']=="Invalid Login" && $_GET['error']) echo $error; ?></h4 ><td></td></td>
     <td align="center"><a href="forgotpass.php">Forgot Password?</a><td>
     </td></td>
     </tr>
@@ -123,7 +123,7 @@ function ValidateField(field,value)
 <div id="registerleft">
 <form style="padding-left:0%;" name="register" method="post" action="core/register.php">
 <table class="register">
-<h4><?php if(isset($_GET['error'])&& strlen($_GET['error']) != 81 && $_GET['error'] != "Invalid Login") echo $error;?></h4>
+<h4><?php if(isset($_GET['error']) && $_GET['error'] != "Invalid Login" && $_GET['error'] != "An email has been sent to you. Please check it and confirm your account to login") echo $error;?></h4>
 <h2>Find Your Study Buddy!</h2>
 <tr>
 <td><input type="text" name="firstname" value="First Name" onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;" onBlur="ValidateField(this,'First Name')"/></td>
