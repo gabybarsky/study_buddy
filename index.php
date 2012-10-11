@@ -123,7 +123,7 @@ function ValidateField(field,value)
 <div id="registerleft">
 <form style="padding-left:0%;" name="register" method="post" action="core/register.php">
 <table class="register">
-<h4><?php if(isset($_GET['error'])&& strlen($_GET['error']) != 81) echo $error;?></h4>
+<h4><?php if(isset($_GET['error'])&& strlen($_GET['error']) != 81 && $_GET['error'] != "Invalid Login") echo $error;?></h4>
 <h2>Find Your Study Buddy!</h2>
 <tr>
 <td><input type="text" name="firstname" value="First Name" onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;" onBlur="ValidateField(this,'First Name')"/></td>
