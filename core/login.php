@@ -16,13 +16,13 @@ if(strlen($_POST['username'])>0 && strlen($_POST['password'])>0)
 		}
 		else
 		{
-			header('Location: ../index.php?error=Invalid Login');
+			header('Location: ../index.php?error=0');
 		}
 	}
 }
 else
 {
 	$error = "No username or password entered";
-	header('Location: ../index.php?error=Invalid Login');
+	header('Location: ../index.php?error=0');
 }
 ?>

@@ -63,7 +63,7 @@ function Login($uid, $pass)
 			}
 			else
 			{
-				header("Location: ../index.php?error=An email has been sent to you. Please check it and confirm your account to login");
+				header("Location: ../index.php?error=10");
 			}
 		}
 		else
@@ -89,13 +89,13 @@ function Register($uid, $pass, $email, $first, $last, $school, $grade, $birthday
 	echo $uid;
 	if(UserExist($uid))
 	{
-		header("Location: ../index.php?error=Username Unavailable");
+		header("Location: ../index.php?error=1");
 	}
 	else
 	{
 		if(EmailExist($email))
 		{
-			header("Location: ../index.php?error=Email already in use");
+			header("Location: ../index.php?error=4");
 		}
 		else
 		{
