@@ -13,8 +13,12 @@
 # Current Version: 1.0.0
 # Function: Home page
 */
+<<<<<<< HEAD
 include "core/core.php";
 if(isset($_COOKIE['username']) && isset($_COOKIE['password']))
+=======
+if(isset($_COOKIE['username']))
+>>>>>>> Update lots of tits
 {
 	header("Location: profile.php");
 }
