@@ -87,37 +87,43 @@ function Register($uid, $pass, $email, $first, $last, $school, $grade, $birthday
 	$securityA = mysql_real_escape_string($securityA);
 	//echo $uid,"  ",$pass,"  ",$email,"  ",$first,"  ",$last,"  ",$school,"  ",$grade,"  ",$birthday,"  ",$securityQ,"  ",$securityA,"  ",$datejoined,"  ",$lastlonline;
 	echo $uid;
-	if(UserExist($uid))
+	if (is_null($error))
 	{
-		header("Location: ../index.php?error=1");
-	}
-	else
-	{
-		if(EmailExist($email))
+		if(UserExist($uid))
 		{
-			header("Location: ../index.php?error=4");
+			header("Location: ../index.php?error=1");
 		}
 		else
 		{
-			if($sql = mysql_query("INSERT INTO accounts (username,password,email,firstname,lastname,school,grade,birthday,securityquestion,securityanswer,datejoined,lastonline,confirmed) VALUES ('$uid','$pass','$email','$first','$last','$school','$grade','$birthday','$securityQ','$securityA','$datejoined','$lastonline','no')"	))
+			if(EmailExist($email))
 			{
-				//register sucessful
-				//email user and ask for confirmation
-				$activationID = uniqid();
-				$sql2 = mysql_query("INSERT INTO `activation` (username,activation) VALUES('$uid','$activationID')");
-				
-				$subject = "Do not reply to this email";
-				$message = "Thank you for registering at StudyBuddy.com! To begin using our service, please click the link below. '\r\n' studybuddy.com/activate.php?activate='$activationID' ";
-				$message = wordwrap($message);
-				$headers = "From: mitchfriedman5@gmail.com";
-				
-				mail($email,$subject,$message,$headers);
-				return true;
+				header("Location: ../index.php?error=4");
 			}
-		}
-	}	
+			else
+			{
+				if($sql = mysql_query("INSERT INTO accounts (username,password,email,firstname,lastname,school,grade,birthday,securityquestion,securityanswer,datejoined,lastonline,confirmed) VALUES ('$uid','$pass','$email','$first','$last','$school','$grade','$birthday','$securityQ','$securityA','$datejoined','$lastonline','no')"	))
+				{
+					//register sucessful
+					//email user and ask for confirmation
+					$activationID = uniqid();
+					$sql2 = mysql_query("INSERT INTO `activation` (username,activation) VALUES('$uid','$activationID')");
+				
+					$subject = "Do not reply to this email";
+					$message = "Thank you for registering at StudyBuddy.com! To begin using our service, please click the link below. '\r\n' studybuddy.com/activate.php?activate='$activationID' ";
+					$message = wordwrap($message);
+					$headers = "From: mitchfriedman5@gmail.com";
+				
+					mail($email,$subject,$message,$headers);
+					return true;
+				}
+			}
+		}	
+	}
+	else
+	{
+		header("Location: ../index.php?error=", str($error));	
+	}
 }
-
 function GetUserFromActivate($id)
 {
 	//echo $id;

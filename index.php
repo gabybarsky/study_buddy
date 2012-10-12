@@ -13,6 +13,7 @@
 # Current Version: 1.0.0
 # Function: Home page
 */
+include "core/core.php";
 if(isset($_COOKIE['username']) && isset($_COOKIE['password']))
 {
 	header("Location: profile.php");
@@ -124,7 +125,7 @@ function ValidateField(field,value)
                 	<td align="right" width="15%"><input type="submit" name="submit" class="submit" value="Sign In"/></td>
 				</tr>
     <tr>
-    <td><h4 align="center"><?php if(isset($_GET['error']) && $_GET['error'] == 10) echo $error; ?></h4></td><td></td><td></td><td><h4 align="middle"><?php if(isset($_GET['error']) && $_GET['error']=="Invalid Login" && $_GET['error']) echo $error; ?></h4 ><td></td></td>
+    <td><h4 align="center"><?php if(isset($_GET['error']) && $_GET['error'] == 10) echo $error; ?></h4></td><td></td><td></td><td><h4 align="middle"><?php if(isset($_GET['error']) && $_GET['error']=="Invalid Login") echo $error; ?></h4 ><td></td></td>
     <td align="center"><a href="forgotpass.php">Forgot Password?</a><td>
     </td></td>
     </tr>

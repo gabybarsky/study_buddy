@@ -3,37 +3,36 @@ include 'core.php';
 
 if(UserExist($_POST['username']))
 {
-	header("Location: ../index.php?error=1");
+	header("Location: ../index.php?error=1"); break;
 }
-if(strlen($_POST['registerpassword']) < 6 || strlen($_POST['confirmpassword']) < 6)
+elseif(strlen($_POST['registerpassword']) < 6 || strlen($_POST['confirmpassword']) < 6)
 {
-	header('Location: ../index.php?error=2');
+	header('Location: ../index.php?error=2'); break;
 }
-if($_POST['registerpassword'] != $_POST['confirmpassword'])
+elseif($_POST['registerpassword'] != $_POST['confirmpassword'])
 {
-	header('Location: ../index.php?error=3');
+	header('Location: ../index.php?error=3'); break;
 }
-if($_POST['firstname'] == 'First Name' || $_POST['lastname'] == 'Last Name')
+elseif($_POST['firstname'] == 'First Name' || $_POST['lastname'] == 'Last Name')
 {
-	header("Location: ../index.php?error=5");
+	header("Location: ../index.php?error=5"); break;
 }
-if($_POST['answer'] == 'answer')
+elseif($_POST['answer'] == 'answer')
 {
-	header("Location: ../index.php?error=6");
+	header("Location: ../index.php?error=6"); break;
 }
-if($_POST['day'] == 'day' || $_POST['year'] == 'year' || $_POST['month'] == 'month' )
+elseif($_POST['day'] == 'day' || $_POST['year'] == 'year' || $_POST['month'] == 'month' )
 {
-	header("Location: ../index.php?error=7");
+	header("Location: ../index.php?error=7"); break;
 }
-if($_POST['school'] == 'school')
+elseif($_POST['school'] == 'school')
 {
-	header("Location: ../index.php?error=8");
+	header("Location: ../index.php?error=8"); break;
 }
-if($_POST['grade'] == 'grade')
+elseif($_POST['grade'] == 'grade')
 {
-	header("Location: ../index.php?error=9");
+	header("Location: ../index.php?error=9"); break;
 }
-
 
 
 $username = $_POST['username'];
