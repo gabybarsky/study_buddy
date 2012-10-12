@@ -1,7 +1,7 @@
 <?php
 /*
 # Filename: index.php
-# Created on  1 October 2012    by Mitchell
+# Created on  1 October 2012    by Mitchell and Gaby
 #
 # Modification history
 # Date       By             Reasons
@@ -14,7 +14,7 @@
 # Function: Home page
 */
 include "core/core.php";
-if(isset($_COOKIE['username']) && isset($_COOKIE['password']))
+if(isset($_COOKIE['username']))
 {
 	header("Location: profile.php");
 }

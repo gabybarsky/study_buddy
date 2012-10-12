@@ -23,7 +23,7 @@ html, body
 	background-repeat: no-repeat;
 	
 }
-/* 				Top 				*/
+/* --------------Top-------------- */
 #cnt_top 
 {
 	margin: auto;
@@ -42,7 +42,7 @@ html, body
 	color: #89ACAA;
 	text-align: left;
 }
-/*                 Links                  */
+/* --------------Links-------------- */
 #cnt_top a
 {
 	text-decoration: none;
@@ -58,7 +58,7 @@ html, body
 	/*color:#60AFFE; /*#E3541B;*/
 	color: #2d5e8a;
 }
-/* 				Tables 				*/
+/* --------------Tables-------------- */
 table
 {
 	text-align: right;
@@ -67,7 +67,7 @@ table
 	margin: 0px;
 }
 
-/* 				Main Content 				*/
+/* --------------Main Content-------------- */
 #mainbody
 {
 	width: 50%;
@@ -83,7 +83,7 @@ table
 {
 	color: #89ACAA;
 }
-/* 				Footer 				*/
+/* --------------Footer-------------- */
 #footer 
 {
 	height: 5%;
@@ -112,7 +112,7 @@ hr
     width: 95%;
     border-radius: 20px;
     background: #4a7eac;
-}​
+}
 h3
 {
 	color: red;
