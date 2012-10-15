@@ -15,8 +15,7 @@ html, body
 {
 	margin: 0;
 	padding: 0;
-
-	background-size: 100% 100%;
+	background-size:100% 100%;
 	background-image:url('../images/linepaper.png');
 	background-attachment: scroll;
 	background-repeat: no-repeat;
@@ -119,7 +118,7 @@ hr
     width: 95%;
     border-radius: 20px;
     background: #4a7eac;
-}​
+}
 h3
 {
 	color: red;

@@ -2,10 +2,10 @@ html, body
 {
 	margin: 0;
 	padding: 0;
-	height: 100%;
+	background-size: 100% 100%;
 	background-image:url('../images/linepaper.png');
 	background-attachment: scroll;
-	background-repeat: repeat;
+	background-repeat: no-repeat;
 	font-family:"Comic Sans MS", cursive, sans-serif;
 	
 }
