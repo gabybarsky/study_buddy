@@ -3,11 +3,10 @@ html, body
 	margin: 0;
 	padding: 0;
 	height: 100%;
-	width: 100%;
-	background-image:url('../linepaper.png');
-	background-size: 100%;
-	font-family: Rockwell;
-	background-repeat: no-repeat;
+	background-image:url('../images/linepaper.jpg');
+	background-attachment: scroll;
+	background-repeat: repeat;
+	font-family:"Comic Sans MS", cursive, sans-serif;
 	
 }
 /* Top Container */

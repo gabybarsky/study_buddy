@@ -8,19 +8,30 @@ $link = mysql_connect($dbhost,$dbuser,$dbpass) or die(mysql_error());
 mysql_select_db($dbname) or die("Couldn't connect!");
 //Core Functions
 
-function GetUserInfo($uid, $pass)
+function GetUserInfo($uid)
 {
 	$uid = clean($uid);
-	$pass = clean($pass);
-	$pass = md5($pass);
-	$sql = mysql_query("SELECT * FROM accounts WHERE username = '$uid' AND password ='$pass'");
+	$sql = mysql_query("SELECT * FROM accounts WHERE username = '$uid' ");
 	if(mysql_num_rows($sql) > 0)
 	{
 		$user = mysql_fetch_array($sql);
 		return $user;
 	}
-	header("Location: index.php");
+	
+	//header("Location: index.php");
 	//return $sql;		
+}
+//function to change users password
+function ChangePassword($uid,$pass)
+{
+	$uid = clean($uid);
+	$pass = clean($pass);
+	$pass = md5(sha1(sha1(sha1($pass))));
+	$sql = mysql_query("UPDATE `accounts` SET `password` = '$pass' WHERE `username` = '$uid'");
+	if($sql)
+	{
+		return true;
+	}
 }
 
 function UserExist($uid)
@@ -85,8 +96,7 @@ function Register($uid, $pass, $email, $first, $last, $school, $grade, $birthday
 	$grade = mysql_real_escape_string($grade);
 	$securityQ = mysql_real_escape_string($securityQ);
 	$securityA = mysql_real_escape_string($securityA);
-	//echo $uid,"  ",$pass,"  ",$email,"  ",$first,"  ",$last,"  ",$school,"  ",$grade,"  ",$birthday,"  ",$securityQ,"  ",$securityA,"  ",$datejoined,"  ",$lastlonline;
-	echo $uid;
+	
 	if(UserExist($uid))
 	{
 		header("Location: ../index.php?error=1");
@@ -105,21 +115,21 @@ function Register($uid, $pass, $email, $first, $last, $school, $grade, $birthday
 				//email user and ask for confirmation
 				$activationID = uniqid();
 				$sql2 = mysql_query("INSERT INTO `activation` (username,activation) VALUES('$uid','$activationID')");
-			
+				
 				$subject = "Do not reply to this email";
 				$message = "Thank you for registering at StudyBuddy.com! To begin using our service, please click the link below. '\r\n' studybuddy.com/activate.php?activate='$activationID' ";
 				$message = wordwrap($message);
 				$headers = "From: studybuddyGM@gmail.com";
-			
+				
 				mail($email,$subject,$message,$headers);
 				return true;
 			}
 		}
 	}	
 }
+
 function GetUserFromActivate($id)
 {
-	//echo $id;
 	$sql = mysql_query("SELECT * FROM `activation` WHERE `activation` = '$id'");
 	$user = mysql_fetch_array($sql);
 	
@@ -128,13 +138,29 @@ function GetUserFromActivate($id)
 	$result = mysql_query("UPDATE `accounts` SET `confirmed` = '$value' WHERE `username` = '$username' ");
 	if(!$result)
 	{
-		   echo  mysql_error();
+		   die(mysql_error());
 	}
 	$result2 = mysql_query("DELETE FROM `activation` WHERE `username` = '$username'");
 	if(!$result2)
 	{
-		echo mysql_error();
+		die(mysql_error());
 	}
+}
+
+function GetUserCourses($uid)
+{
+	$uid = clean($uid);
+	$sql = mysql_query("SELECT * FROM `classes` WHERE `username` = '$uid' ");
+	/*while($row = mysql_fetch_array($sql))
+	{
+		return $row;
+	}*/
+	$numrows = mysql_num_rows($sql);
+	for($i=0;$i<$numrows;$i++)
+	{
+		$query_array[] = mysql_fetch_assoc($sql);
+	}
+	return $query_array;
 }
 
 function clean($str, $encode_ent = false) {

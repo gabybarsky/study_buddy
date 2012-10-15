@@ -34,6 +34,8 @@ else
 			case  8: $error = "Invalid school"; break;
 			case  9: $error = "Invalid grade"; break;
 			case 10: $error = "An email has been sent to you. Please check it and confirm your account to login."; break;
+			case 11: $error = "Your password has been changed"; break;
+			case 12: $error = "Invalid option for security question"; break;
 		}
 	}
 }
@@ -44,6 +46,7 @@ else
 <title>Study Buddy</title>
 </head>
 <body>
+
 <script type="text/javascript">
 
 function ValidateField(field,value)
@@ -52,67 +55,9 @@ function ValidateField(field,value)
 	{
 		field.value= value;	
 	}
-	if(field.name=="registerpassword")
-	{
-		
-		if(field.value.length < 6)
-		{
-			document.getElementById("check").style.display = "inline";
-			field.focus();
-		}
-		if(field.value.length >= 6)
-		{
-			document.getElementById("check").style.display = "none";
-		}
-	}
-	if(field.name=="confirmpassword")
-	{
-		if(field.value != document.getElementById("registerpassword").value)
-		{
-			document.getElementById("check2").style.display = "inline";
-			//field.focus();
-		}
-		else
-			document.getElementById("check2").style.display = "none";
-	}
-	if(field.name == "firstname")
-	{
-		if(field.value.length <= 1)
-		{
-			document.getElementById("checkfirst").style.display = "inline";
-			field.focus();
-		}
-		else
-		{
-			document.getElementById("checkfirst").style.display = "none";
-		}
-	}
-	if(field.name == "lastname")
-	{
-		if(field.value.length <= 1)
-		{
-			document.getElementById("checklast").style.display = "inline";
-			field.focus();
-		}
-		else
-		{
-			document.getElementById("checklast").style.display = "none";
-		}
-	}
-	if(field.name == "username")
-	{
-		if(field.value.length <= 1)
-		{
-			document.getElementById("checkusername").style.display = "inline";
-			field.focus();
-		}
-		else
-		{
-			document.getElementById("checkusername").style.display = "none";
-		}
-	}
 }
 </script>
+
 <div id="cnt_top">
 	<form method="post" name="login" action="core/login.php">
 	<table style="	border-collapse:separate;
@@ -120,12 +65,12 @@ function ValidateField(field,value)
 	            <tbody>
 	            <tr>
 	            	<td width="40%" height="5px"><h1>Study Buddy</h1></td><td></td>
-                    <td width="20%;"></td><td align="left"><input class="input" id="username" name="username" type="text" value="Username" onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;" onBlur="ValidateField(this,'Username')" /></td>
-                	<td align="left"><input class="input" id="password" name="password"  type="password" value="Password" onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;" onBlur="ValidateField(this,'Password')" /></td>
+                    <td width="20%;"></td><td align="left"><input class="input" id="username" name="username" type="text" value="Username" onfocus="this.value='';" onBlur="ValidateField(this,'Username')" /></td>
+                	<td align="left"><input class="input" id="password" name="password"  type="password" value="Password" onfocus="this.value='';" onBlur="ValidateField(this,'Password')" /></td>
                 	<td align="right" width="15%"><input type="submit" name="submit" class="submit" value="Sign In"/></td>
 				</tr>
     <tr>
-    <td><h4 align="center"><?php if(isset($_GET['error']) && $_GET['error'] == 10) echo $error; ?></h4></td><td></td><td></td><td><h4 align="middle"><?php if(isset($_GET['error']) && $_GET['error']==0) echo $error; ?></h4 ><td></td></td>
+    <td><h4 align="center"><?php if(isset($_GET['error']) && $_GET['error'] == 10 || $_GET['error'] ==11) echo $error; ?></h4></td><td></td><td></td><td><h4 align="middle"><?php if(isset($_GET['error']) && $_GET['error']==0) echo $error; ?></h4 ><td></td></td>
     <td align="center"><a href="forgotpass.php">Forgot Password?</a><td>
     </td></td>
     </tr>
@@ -133,47 +78,50 @@ function ValidateField(field,value)
     </table>
     </form>
 </div>
+
+
 <div id="registerleft">
-<form style="padding-left:0%;" name="register" method="post" action="core/register.php">
+<form name="register" method="post" action="core/register.php">
 <table class="register">
-<h4><?php if(isset($_GET['error']) && $_GET['error'] != 0 && $_GET['error'] != 10) echo $error;?></h4>
+<h4><?php if(isset($_GET['error']) && $_GET['error'] != 0 && $_GET['error'] != 10 && $_GET['error'] != 11) echo $error; ?></h4>
 <h2>Find Your Study Buddy!</h2>
 <tr>
-<td><input type="text" name="firstname" value="First Name" onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;" onBlur="ValidateField(this,'First Name')"/></td>
+<td><input type="text" name="firstname" value="First Name" onfocus="this.value='';" onBlur="ValidateField(this,'First Name')"/></td>
 <td align="left" width="140"><h5 style="display: none;" id="checkfirst">*Enter a valid name</h5></td>
 </tr>
 <tr>
-<td><input type="text" name="lastname" value="Last Name" onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;" onBlur="ValidateField(this,'Last Name')"/></td>
+<td><input type="text" name="lastname" value="Last Name" onfocus="this.value='';"  onBlur="ValidateField(this,'Last Name')"/></td>
 <td align="left" width="140"><h5 style="display: none;" id="checklast">*Enter a valid name</h5></td>
 </tr>
 <tr>
-<td><input type="text" name="username" value="Username" onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;" onBlur="ValidateField(this,'Username')"/></td>
+<td><input type="text" name="username" value="Username" onfocus="this.value='';"  onBlur="ValidateField(this,'Username')"/></td>
 <td align="left" width="140"><h5 style="display: none;" id="checkusername">*Username must be at least 6 characters</h5></td>
 </tr>
 <tr>
-<td><input type="password" name="registerpassword" id="registerpassword"  value="Password" onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;" onBlur="ValidateField(this,'password')" /></td><td align="left" width="140"><h5 style="display: none;" id="check">*Must be at least 6 characters</h5></td>
+<td><input type="password" name="registerpassword" id="registerpassword"  value="Password" onfocus="this.value='';" onBlur="ValidateField(this,'password')" /></td><td align="left" width="140"><h5 style="display: none;" id="check">*Must be at least 6 characters</h5></td>
 </tr>
 <tr>
-<td><input type="password" name="confirmpassword" id="confirmpassword" value="Password" onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;" onBlur="ValidateField(this,'password')"/></td><td align="left" width="140"><h5 style="display: none;" id="check2">*Must match password above</h5></td>
+<td><input type="password" name="confirmpassword" id="confirmpassword" value="Password" onfocus="this.value='';" onBlur="ValidateField(this,'password')"/></td><td align="left" width="140"><h5 style="display: none;" id="check2">*Must match password above</h5></td>
 </tr>
 <tr>
-<td><input type="text" name="email" value="Email" onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;" onBlur="ValidateField(this,'Email')"/></td>
+<td><input type="text" name="email" value="Email" onfocus="this.value='';" onBlur="ValidateField(this,'Email')"/></td>
 </tr>
 <tr>
 <td>
 <select name="question" id="question">
+<option value="0">Security Question</option>
 <option value="1">What city were you born in?</option>
 <option value="2">What was the name of your first pet?</option>
 <option value="3">What is your mothers maiden name?</option>
 <option value="4">What is your favorite school subject?</option>
 <option value="5">What is your childhood nickname?</option>
 </select>
-</td><td><h5 align="left">*Security Question</h5></td>
+</td>
 </tr>
 <tr>
 <td>
 <input type="text" value="Answer" name="answer" id="answer" maxlength="250" onblur="ValidateField(this,'Answer')" 
-onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;">
+onfocus="this.value='';" >
 </td>
 </tr>
 
@@ -275,17 +223,17 @@ onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;">
 
 
 <div id="mainbody">
-<img src="brain2.png" height="65%" alt="Sign Up"></img>
+<img src="images/brainv2.png" height="75%"  width="130%"  alt="Sign Up"></img>
 </div>
 <div id="footer">
 <table align="center" width="50%">
 <tr>
-<td><p><a href="/faq.html">FAQ</a></p></td><td>|</td>
-<td><p><a href="/about.html">About</a></p></td><td>|</td>
-<td><p><a href="/contact.html">Contact</a></p></td><td>|</td>
-<td><p><a href="/privacy.html">Privacy</a></p></td><td>|</td>
-<td><p><a href="/legal.html">Legal</a></p></td><td>|</td>
-<td><p><a href="/apply.html">Apply</a></p></td>
+<td><p><a href="/faq.php">FAQ</a></p></td><td>|</td>
+<td><p><a href="/about.php">About</a></p></td><td>|</td>
+<td><p><a href="/contact.php">Contact</a></p></td><td>|</td>
+<td><p><a href="/privacy.php">Privacy</a></p></td><td>|</td>
+<td><p><a href="/legal.php">Legal</a></p></td><td>|</td>
+<td><p><a href="/apply.php">Apply</a></p></td>
 </tr>
 </table>
 </div>

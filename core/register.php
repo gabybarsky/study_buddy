@@ -33,6 +33,10 @@ elseif($_POST['grade'] == 'grade')
 {
 	header("Location: ../index.php?error=9"); break;
 }
+elseif($_POST['question'] == '0')
+{
+	header("Location: ../index.php?error=12"); break;
+}
 
 
 $username = $_POST['username'];

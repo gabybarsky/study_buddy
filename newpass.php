@@ -1,26 +1,43 @@
 <html>
 <head>
 <title>Study Buddy</title>
-<link rel="stylesheet" type="text/css" href="css/forgotpass.css"/>
+<link rel="stylesheet" type="text/css" href="css/entersecurity.css"/>
 </head>
 <body>
 <?php
 include 'core/core.php';
+
+//if they are already logged in and somehow ended up on this page… (snooping around)
 if(isset($_COOKIE['username']))
 {
+	//send user to the profile page
 	header("Location: profile.php");
 }
-if(isset($_GET['error']))
+//make sure the username and answer to security question is given
+if(isset($_GET['id']) && isset($_POST['answer']))
 {
-	switch ($_GET['error']) 
+	$username = $_GET['id'];
+	$user = GetUserInfo($username);
+	if($user[1] == null)//user doesnt exist and isnt a valid username in our database
 	{
-		case  0: $error = "Invalid Login"; break;
-		case  1: $error = "Usernames don't match"; break;
-		case  2: $error = "Invalid username"; break;
-		case  3: $error = "Invalid answer to security question. Try again."; break;
-		case  4: $error = "New passwords entered did not match. Try again."; break;
-		case 10: $error = "An email has been sent to you. Please check it and confirm your account to login."; break;
+		//send back to the forgot password page to fill out a proper username
+		header("Location: forgotpass.php?error=2");
 	}
+	else
+	{
+		$answer = $user[10];
+		$answergiven = $_POST['answer'];
+		if($answer != $answergiven)
+		{
+			header("Location: forgotpass.php?error=3");
+		}
+	}
+	
+
+}
+else
+{
+	header("Location: forgotpass.php?error=1");
 }
 ?>
 
@@ -59,42 +76,28 @@ function ValidateField(field,value)
 
 <div id="main">
 <table class="middle">
-<h4><?php if(isset($_GET['error']) && $_GET['error'] != 10) echo $error; ?></h4>
-<form action="entersecurity.php" method="POST" name="getquestion">
+<form action="core/resetpass.php" name="resetpass" method="POST">
 <fieldset>
-<legend align="left">Forgot Your Password?</legend>
+<legend align="left">Enter a new password</legend>
 <tr>
 <td>
-<input type="text" name="username" value="Username" onfocus="this.value='';" onBlur="ValidateField(this,'Username')" class="middle" style="width: 300px;"/>
+<h3><input type="password" value="password" name="password" onfocus="this.value='';" onblur="ValidateField(this,'password')" class="middle" style="width: 350px;"/> </h3>
 </td>
 </tr>
 <tr>
 <td>
-<input type="text" name="repeatusername" value="Confirm Username" onfocus="this.value='';" onblur="ValidateField(this,'Confirm Username')" class="middle" style="width: 300px;"/>
+<input type="password" value="PASSWORD" name="confirmpassword" onfocus="this.value='';" onblur="ValidateField(this,'password')" class="middle" style="width: 350px;"/>
 </td>
 </tr>
 <tr>
 <td>
-<input type="submit" name="submit" value="Submit" class="submit" style="width: 200px; margin-left: 15%; margin-top: 5%;"/>
+<input type="submit" name="submit" value="Submit" class="submit" style="width: 200px; margin-left:23%; margin-top: 5%;" align="middle"/>
 </td>
 </tr>
+<input type="text" style="display: none;" name="username" value="<?php echo $username; ?>"/>
 </fieldset>
 </form>
 </table>
 </div>
-
-<div id="footer">
-<table align="center" width="50%">
-<tr>
-<td><p><a href="/faq.html">FAQ</a></p></td><td>|</td>
-<td><p><a href="/about.html">About</a></p></td><td>|</td>
-<td><p><a href="/contact.html">Contact</a></p></td><td>|</td>
-<td><p><a href="/privacy.html">Privacy</a></p></td><td>|</td>
-<td><p><a href="/legal.html">Legal</a></p></td><td>|</td>
-<td><p><a href="/apply.html">Apply</a></p></td>
-</tr>
-</table>
-</div>
-
 </body>
 </html>

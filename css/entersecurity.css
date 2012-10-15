@@ -6,7 +6,7 @@ html, body
 	background-image:url('../images/linepaper.jpg');
 	background-attachment: scroll;
 	background-repeat: repeat;
-	font-family:"Comic Sans MS", cursive, sans-serif;
+	font-family: Rockwell;
 	
 }
 /* Top Container */
@@ -64,6 +64,10 @@ table
 }
 fieldset
 {
+	float: left;
+	margin-left: 0px;
+	padding-left: 0px;
+	text-align: left;
 	border: 0px;
 	font-size: 24px;
 	color: #89ACAA;
@@ -95,18 +99,8 @@ input.submit
     border-right: 1px solid black;
     border-bottom: 1px solid black;
     color: #607783;
-    font-size: 12px;
-    
+    font-size: 12px;   
 }
-.middle.submit
-{
-	font-size: 12px;
-	background-color: #739AFF;
-	color: white;
-	margin-left: 35%;
-	width: 150px;
-}
-
 
 #footer 
 {
@@ -128,11 +122,4 @@ input.submit
 #footer a:hover
 {
 	color: #2d5e8a;
-}
-h4
-{
-	color: red;
-	font-size: 15px;
-	text-align: left;
-	margin-left: 15%;
 }

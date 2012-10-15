@@ -1,0 +1,315 @@
+html, body
+{
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	/*background-image:url('../images/linepaper.jpg');
+	background-attachment: scroll;
+	background-repeat: repeat;*/
+	font-family: Rockwell;
+	
+}
+/* Top Container */
+#cnt_top 
+{
+	margin: auto;
+	padding: 0px;
+	width: 100%; /* 80-100% all work, test them out too */
+	height: 100px;
+	color: #73a8d4;	
+	border-bottom: 1px solid black;
+	background-color: #E5F0F1; /* #cbedf6; 75B60B* 3A82FF; */
+}
+
+#cnt_top h1
+{
+	padding-left: 12%;
+	font-size: 35px;
+	color: #89ACAA;
+	text-align: left;
+}
+#cnt_top a
+{
+	text-decoration: none;
+	color: #4a7eac;
+}
+#cnt_top a:visited
+{
+	color:#4a7eac;
+	text-decoration: none;
+}
+#cnt_top a:hover
+{
+	color: #2d5e8a;
+}
+/* Main Body */
+#main
+{
+	width: 80%;
+	text-align: left;
+	margin-left: 15%;
+	margin-top: 5%;
+	padding-bottom: 5%;
+}
+#main h1
+{
+	text-align: left;
+	color: #89ACAA;
+	font-size: 24px;
+	float: left;
+}
+#main img
+{
+	float: left;
+}
+#main li
+{
+
+	margin-left: 30%;
+}
+#main a
+{
+	color: #4a7eac;
+	text-decoration: none;
+}
+#main a:visited
+{
+	color:#4a7eac;
+	text-decoration: none;
+}
+#main a:hover
+{
+	color: #2d5e8a;
+}
+/* first question */
+#q1
+{
+	padding-bottom: 3%;
+		
+}
+#q1 p
+{
+	margin-left: 15%;
+	
+}
+#q1 h1
+{
+	font-size: 18px;
+	color: #89ACAA;
+	text-align: left;
+	float: left;
+	margin-left: 15%;
+}
+#q1 a
+{
+	color: #4a7eac;
+	text-decoration: none;
+}
+#q1 a:visited
+{
+	color:#4a7eac;
+	text-decoration: none;
+}
+#q1 a:hover
+{
+	color: #2d5e8a;
+}
+/* second question */
+#q2
+{
+	padding-bottom: 3%;
+}
+#q2 p
+{
+	margin-left: 15%;
+	padding-right: 15%;
+}
+#q2 h1
+{
+	font-size: 18px;
+	color: #89ACAA;
+	text-align: left;
+	float: left;
+	margin-left: 15%;
+}
+#q2 a
+{
+	color: #4a7eac;
+	text-decoration: none;
+}
+#q2 a:visited
+{
+	color:#4a7eac;
+	text-decoration: none;
+}
+#q2 a:hover
+{
+	color: #2d5e8a;
+}
+#q3
+{		
+	padding-bottom: 3%;		
+}
+#q3 p
+{
+	margin-left: 15%;
+	padding-right: 15%;
+}
+#q3 h1
+{
+	font-size: 18px;
+	color: #89ACAA;
+	text-align: left;
+	float: left;
+	margin-left: 15%;
+}
+#q3 a
+{
+	color: #4a7eac;
+	text-decoration: none;
+}
+#q3 a:visited
+{
+	color:#4a7eac;
+	text-decoration: none;
+}
+#q3 a:hover
+{
+	color: #2d5e8a;
+}
+#q4
+{
+	padding-bottom: 3%;		
+}
+#q4 p
+{
+	margin-left: 15%;
+	padding-right: 15%;
+}
+#q4 h1
+{
+	font-size: 18px;
+	color: #89ACAA;
+	text-align: left;
+	float: left;
+	margin-left: 15%;
+}
+#q4 a
+{
+	color: #4a7eac;
+	text-decoration: none;
+}
+#q4 a:visited
+{
+	color:#4a7eac;
+	text-decoration: none;
+}
+#q4 a:hover
+{
+	color: #2d5e8a;
+}
+
+#q5
+{
+	
+}
+#q5 p
+{
+	margin-left: 15%;
+	padding-right: 15%;
+}
+#q5 h1
+{
+	font-size: 18px;
+	color: #89ACAA;
+	text-align: left;
+	float: left;
+	margin-left: 15%;
+}
+#q5 a
+{
+	color: #4a7eac;
+	text-decoration: none;
+}
+#q5 a:visited
+{
+	color:#4a7eac;
+	text-decoration: none;
+}
+#q5 a:hover
+{
+	color: #2d5e8a;
+}
+
+
+hr
+{
+	width: 70%;
+	border-top: 2px solid #299DFF;
+	
+}
+
+table
+{
+	
+}
+fieldset
+{
+	float: left;
+	margin-left: 0px;
+	padding-left: 0px;
+	text-align: left;
+	border: 0px;
+	font-size: 24px;
+	color: #89ACAA;
+}
+input 
+{
+    padding: 6px;
+    margin-bottom: 10px;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    color: #607783;
+    font-size: 12px;
+}
+input.submit 
+{
+	font-size: 12px;
+    background-color: #739AFF;
+    color: white;
+}
+.middle
+{
+	width: 300px;
+    padding: 6px;
+    margin-bottom: 10px;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    color: #607783;
+    font-size: 12px;   
+}
+#footer 
+{
+	height: 5%;
+	color: #4a7eac;
+	padding-top: 2%;
+	position: absolute;
+	left: 35%;
+	/*bottom: 0px;*/
+}
+#footer a
+{
+	position:relative;
+	color: #4a7eac;
+	text-align:center;
+	text-decoration: none;
+	
+}
+#footer a:hover
+{
+	color: #2d5e8a;
+}
