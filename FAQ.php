@@ -5,7 +5,7 @@
 </head>
 <body>
 <?php
-include 'core.php';
+include 'core/core.php';
 if(isset($_COOKIE['username']))
 {
 	header("Location: profile.php");
@@ -85,18 +85,8 @@ function ValidateField(field,value)
 <p>Though we allow any user to sign up to be a tutor for any course, we strongly suggest that any student wishing to be a tutor be exceptionally strong in the chosen subject, and that they have taken the course that they have signed up to tutor. This is done in an attempt to ensure that the quality of tutoring is kept to the highest standard. Please be mindful when deciding to become a tutor, as other student's marks will be directly impacted by your decision.</p>
 <p><a href="/faq.php">Back to top</a></p>
 </div>
-<div id="footer">
-<table align="center" width="50%">
-<tr>
-<td><p><a href="/faq.html">FAQ</a></p></td><td>|</td>
-<td><p><a href="/about.html">About</a></p></td><td>|</td>
-<td><p><a href="/contact.html">Contact</a></p></td><td>|</td>
-<td><p><a href="/privacy.html">Privacy</a></p></td><td>|</td>
-<td><p><a href="/legal.html">Legal</a></p></td><td>|</td>
-<td><p><a href="/apply.html">Apply</a></p></td>
-</tr>
-</table>
-</div>
+
+<?php include "core/footer.php"; ?>
 
 </body>
 </html>

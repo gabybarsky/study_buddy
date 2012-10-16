@@ -83,18 +83,7 @@ function ValidateField(field,value)
 </table>
 </div>
 
-<div id="footer">
-<table align="center" width="50%">
-<tr>
-<td><p><a href="/faq.html">FAQ</a></p></td><td>|</td>
-<td><p><a href="/about.html">About</a></p></td><td>|</td>
-<td><p><a href="/contact.html">Contact</a></p></td><td>|</td>
-<td><p><a href="/privacy.html">Privacy</a></p></td><td>|</td>
-<td><p><a href="/legal.html">Legal</a></p></td><td>|</td>
-<td><p><a href="/apply.html">Apply</a></p></td>
-</tr>
-</table>
-</div>
+<?php include "core/footer.php"; ?>
 
 </body>
 </html>
